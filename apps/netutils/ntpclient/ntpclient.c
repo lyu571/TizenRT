@@ -429,7 +429,7 @@ static int ntpc_daemon(int argc, char **argv)
 		 * datagram.
 		 */
 
-		if (nbytes >= (ssize_t)NTP_DATAGRAM_MINSIZE) {
+		if ((nbytes >= (ssize_t)NTP_DATAGRAM_MINSIZE) || (recv.recvtimestamp != NULL)) {
 			svdbg("Setting time\n");
 			ntpc_settime(recv.recvtimestamp);
 			g_ntps.server[srv_index].link = NTP_LINK_UP;
